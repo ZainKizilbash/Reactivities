@@ -7,9 +7,7 @@ public class DbInitializer
 {
     public static async Task SeedData(AppDbContext context)
     {
-        Console.WriteLine("HELOOOOOOOOOOOOOOOOOOO");
         if (context.Activities.Any()) return;   //if the db already has values
-        Console.WriteLine("byeeee");
         var activities = new List<Activity>
         {
             new() {
