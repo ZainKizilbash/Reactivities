@@ -1,6 +1,7 @@
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import { CssBaseline, List, ListItem, ListItemText } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -11,7 +12,9 @@ function App() {
   },[])           //run only once on mount
   return (
     <>
-      <Typography variant='h3'>Reactivities</Typography>
+      {/* this stretches the navbar all the way to the top and left and right aswell*/}
+      <CssBaseline/>          
+      <Navbar/>
       <List>
         {activities.map((activity) => (
           <ListItem key={activity.id}>
