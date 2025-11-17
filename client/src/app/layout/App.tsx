@@ -6,18 +6,33 @@ import ActivityDashboard from "../../features/activities/dashboard/ActivityDashb
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
 
   useEffect(() => {
     axios.get<Activity[]>('https://localhost:5001/api/activities')
       .then(response => setActivities(response.data))
   }, [])           //run only once on mount
+
+  const handleSelectActivity = (id: string) => {
+    setSelectedActivity(activities.find(x => x.id === id));
+  }
+
+  const hanldeCancelSelectActivity = () => {
+    setSelectedActivity(undefined);
+  }
+
   return (
     <Box sx={{ bgcolor: '#eeeeee' }}>
       {/* this stretches the navbar all the way to the top and left and right aswell*/}
       <CssBaseline />
       <Navbar />
       <Container maxWidth='xl' sx={{ mt: 3 }}>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard
+          activities={activities}
+          selectActivity={handleSelectActivity}
+          cancelSelectActivity={hanldeCancelSelectActivity}
+          selectedActivity={selectedActivity}
+        />
       </Container>
     </Box>
   )
