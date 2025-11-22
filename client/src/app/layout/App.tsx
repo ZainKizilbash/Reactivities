@@ -32,6 +32,18 @@ function App() {
     setEditMode(false);
   }
 
+  const handleSubmitForm = (activity: Activity) => {
+    if (activity.id) {
+      setActivities(activities.map(x => x.id == activity.id ? activity : x))
+    } else {
+      const newActivity = { ...activity, id: activities.length.toString() }
+      setSelectedActivity(newActivity);
+      setActivities([...activities, newActivity])
+    }
+
+    setEditMode(false)
+  }
+
   return (
     <Box sx={{ bgcolor: '#eeeeee' }}>
       {/* this stretches the navbar all the way to the top and left and right aswell*/}
@@ -46,6 +58,7 @@ function App() {
           editMode={editMode}
           openForm={hanldeOpenForm}
           closeForm={handleFormClose}
+          submitForm={handleSubmitForm}
         />
       </Container>
     </Box>
