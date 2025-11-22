@@ -7,6 +7,7 @@ import ActivityDashboard from "../../features/activities/dashboard/ActivityDashb
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     axios.get<Activity[]>('https://localhost:5001/api/activities')
@@ -21,17 +22,30 @@ function App() {
     setSelectedActivity(undefined);
   }
 
+  const hanldeOpenForm = (id?: string) => {
+    if (id) handleSelectActivity(id);
+    else hanldeCancelSelectActivity();
+    setEditMode(true);
+  }
+
+  const handleFormClose = () => {
+    setEditMode(false);
+  }
+
   return (
     <Box sx={{ bgcolor: '#eeeeee' }}>
       {/* this stretches the navbar all the way to the top and left and right aswell*/}
       <CssBaseline />
-      <Navbar />
+      <Navbar openForm={hanldeOpenForm} />
       <Container maxWidth='xl' sx={{ mt: 3 }}>
         <ActivityDashboard
           activities={activities}
           selectActivity={handleSelectActivity}
           cancelSelectActivity={hanldeCancelSelectActivity}
           selectedActivity={selectedActivity}
+          editMode={editMode}
+          openForm={hanldeOpenForm}
+          closeForm={handleFormClose}
         />
       </Container>
     </Box>
