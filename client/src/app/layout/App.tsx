@@ -53,7 +53,7 @@ function App() {
   }
 
   return (
-    <Box sx={{ bgcolor: '#eeeeee' }}>
+    <Box sx={{ bgcolor: '#eeeeee', minHeight: '100vh' }}>
       {/* this stretches the navbar all the way to the top and left and right aswell*/}
       <CssBaseline />
       <Navbar openForm={hanldeOpenForm} />
