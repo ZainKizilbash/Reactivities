@@ -44,6 +44,10 @@ function App() {
     setEditMode(false)
   }
 
+  const handleDelete = (id: string) => {
+    setActivities(activities.filter(x => x.id !== id))
+  }
+
   return (
     <Box sx={{ bgcolor: '#eeeeee' }}>
       {/* this stretches the navbar all the way to the top and left and right aswell*/}
@@ -59,6 +63,7 @@ function App() {
           openForm={hanldeOpenForm}
           closeForm={handleFormClose}
           submitForm={handleSubmitForm}
+          deleteActivity={handleDelete}
         />
       </Container>
     </Box>
