@@ -3,7 +3,6 @@ import { Group } from "@mui/icons-material";
 import { NavLink } from "react-router";
 import MenuItemLink from "../shared/components/MenuItemLink";
 import { useStore } from "../../lib/hooks/useStore";
-import { UiStore } from "../../lib/stores/uiStores";
 import { Observer } from "mobx-react-lite";
 
 export default function Navbar() {
