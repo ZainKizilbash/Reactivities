@@ -24,6 +24,9 @@ export default function Navbar() {
               <MenuItemLink to='/createActivity'>
                 Create Activity
               </MenuItemLink>
+              <MenuItemLink to='/counter'>
+                Counter
+              </MenuItemLink>
             </Box>
             <MenuItem>
               User Menu
