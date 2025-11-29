@@ -1,16 +1,11 @@
-import {action, makeObservable, observable} from 'mobx';
+import {makeAutoObservable} from 'mobx';
 
 export default class CounterStore {
     title = 'Counter store';
     count = 42;
 
     constructor() {
-        makeObservable(this, {
-            title: observable,
-            count: observable,
-            increment: action.bound,    //since increment not an arrow function
-            decrement: action
-        })
+        makeAutoObservable(this)
     }
 
     increment(amount = 1){              //since not arrow function need to use bound to bount it to the class
