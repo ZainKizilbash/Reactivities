@@ -1,13 +1,14 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { useActivities } from "../../../lib/hooks/useActivities";
 import { useParams } from "react-router";
-import { useForm, type FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useEffect } from "react";
 import { activitySchema, type ActivitySchema } from "../../../lib/schemas/activitySchema";
 import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function ActiviyForm() {
     const { register, reset, handleSubmit, formState: { errors } } = useForm<ActivitySchema>({
+        mode: 'onTouched',
         resolver: zodResolver(activitySchema)
     });            //react-hook-form built in
     const { id } = useParams();
@@ -17,7 +18,7 @@ export default function ActiviyForm() {
         if (activity) reset(activity);
     }, [activity, reset]);
 
-    const onSubmit = (data: FieldValues) => {
+    const onSubmit = (data: ActivitySchema) => {
         console.log(data)
     }
 
