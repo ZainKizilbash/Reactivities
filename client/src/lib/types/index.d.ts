@@ -31,6 +31,9 @@ export type LocationIQAddress = {
   name: string
   county?: string
   state?: string
+  town? : string
+  village? : string
+  city?: string
   country: string
   country_code: string
 }

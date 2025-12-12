@@ -9,8 +9,12 @@ export const activitySchema = z.object({
     date: z.coerce.date({
         message: 'Date is required'
     }),
-    city: requiredString('City'),
-    venue: requiredString('Venue'),
+    location: z.object({
+        venue: requiredString('Venue'),
+        city: z.string().optional(),
+        latitude: z.coerce.number(),
+        longitude: z.coerce.number()
+    })
 
 })
 
