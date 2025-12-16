@@ -1,12 +1,44 @@
 using System;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence;
 //used for seeding data into the database
 public class DbInitializer
 {
-    public static async Task SeedData(AppDbContext context)
+    public static async Task SeedData(AppDbContext context, UserManager<User>userManager)
     {
+        if(!userManager.Users.Any())
+        {
+            var users = new List<User>
+            {
+                new()
+                {
+                    DisplayName = "Bob",
+                    UserName = "bob@test.com",
+                    Email = "bob@test.com",
+                },
+                new()
+                {
+                    DisplayName = "Tom",
+                    UserName = "tom@test.com",
+                    Email = "tom@test.com",
+                },
+                new()
+                {
+                    DisplayName = "Jane",
+                    UserName = "jane@test.com",
+                    Email = "jane@test.com",
+                },
+
+            };
+
+            foreach(var user in users)
+            {
+                await userManager.CreateAsync(user, "Pa$$w0rd");             //2nd parameter is pw for user
+            }
+        }
+
         if (context.Activities.Any()) return;   //if the db already has values
         var activities = new List<Activity>
         {
