@@ -13,7 +13,6 @@ namespace API.Controllers;
 
 public class ActivitiesController() : BaseApiController     //dependency injection
 {
-    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<List<Activity>>> GetActivities()
     {
