@@ -4,9 +4,9 @@ import { useActivities } from "../../../lib/hooks/useActivities";
 import ActivityFilters from "./ActivityFilters";
 
 export default function ActivityDashboard() {
-    const { activities, isPending } = useActivities();
+    const { activities } = useActivities();
 
-    if (!activities || isPending) return <Typography>Loading...</Typography>
+    if (!activities) return <Typography>Loading...</Typography>
 
     return (
         <Grid2 container spacing={3}>
