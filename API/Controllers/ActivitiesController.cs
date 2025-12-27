@@ -14,7 +14,7 @@ namespace API.Controllers;
 public class ActivitiesController() : BaseApiController     //dependency injection
 {
     [HttpGet]
-    public async Task<ActionResult<List<Activity>>> GetActivities()
+    public async Task<ActionResult<List<ActivityDto>>> GetActivities()
     {
         return await Mediator.Send(new GetActivityList.Query());
     }
