@@ -26,6 +26,7 @@
     <Folder Include="Profiles\" />
     <Folder Include="Profiles\Commands\" />
     <Folder Include="Profiles\DTOs\" />
+    <Folder Include="Profiles\Queries\" />
   </ItemGroup>
 
 </Project>
