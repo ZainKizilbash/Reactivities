@@ -1,6 +1,8 @@
 import { useParams } from "react-router"
 import { useProfile } from "../../lib/hooks/useProfile";
 import { Box, Button, ImageList, ImageListItem, Typography } from "@mui/material";
+import { useState } from "react";
+import PhotoUploadWidget from "../../app/shared/components/PhotoUploadWidget";
 
 export default function ProfilePhotos() {
   const {id} = useParams();
@@ -20,7 +22,7 @@ export default function ProfilePhotos() {
             </Box>
         )}
         {editMode ? (
-            <div>Photo widget goes here</div>
+            <PhotoUploadWidget/>
         ) : (
             <ImageList sx={{ height: 450 }} cols={6} rowHeight={164}>
             {photos.map((item) => (
