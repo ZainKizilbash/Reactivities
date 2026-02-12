@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="DTOs\" />
+    <Folder Include="SignalR\" />
   </ItemGroup>
 
 </Project>
