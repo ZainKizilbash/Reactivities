@@ -1,6 +1,7 @@
 import { useLocalObservable } from "mobx-react-lite"
 import {HubConnection, HubConnectionBuilder, HubConnectionState} from '@microsoft/signalr';
 import { useEffect, useRef } from "react";
+import { runInAction } from "mobx";
 
 export const useComments = (activityId?: string) => {
     const created = useRef(false);
@@ -22,11 +23,15 @@ export const useComments = (activityId?: string) => {
                 console.log('Error establishing connection: ',error));
 
             this.hubConnection.on('LoadComments', comments => {
-                this.comments = comments;
+                runInAction(() => {
+                    this.comments = comments;
+                })
             })
 
             this.hubConnection.on('ReceiveComment', comment => {
-                this.comments.unshift(comment);
+                runInAction(() => {
+                    this.comments.unshift(comment);
+                })
             })
         },
 
