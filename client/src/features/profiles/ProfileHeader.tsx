@@ -5,7 +5,6 @@ type Props = {
 }
 
 export default function ProfileHeader({profile}: Props) {
-    const isFollowing = true;
   return (
     <Paper elevation={3} sx={{p: 4, borderRadius: 3}}>
         <Grid2 container spacing={2}>
@@ -18,7 +17,7 @@ export default function ProfileHeader({profile}: Props) {
                     />
                     <Box display='flex' flexDirection='column' gap={2}>
                         <Typography variant="h4">{profile.displayName}</Typography>
-                        {isFollowing && <Chip 
+                        {profile.following && <Chip 
                             variant="outlined" 
                             color="secondary" 
                             label="Following"
@@ -32,20 +31,20 @@ export default function ProfileHeader({profile}: Props) {
                     <Box display='flex' justifyContent='space-around' width='100%'>
                         <Box textAlign='center'>
                             <Typography variant="h6">Followers</Typography>
-                            <Typography variant="h3">5</Typography>
+                            <Typography variant="h3">{profile.followersCount}</Typography>
                         </Box>
                         <Box textAlign='center'>
                             <Typography variant="h6">Following</Typography>
-                            <Typography variant="h3">42</Typography>
+                            <Typography variant="h3">{profile.followingCount}</Typography>
                         </Box>
                     </Box>
                     <Divider sx={{width: '100%'}}/>
                     <Button
                         fullWidth
                         variant="outlined"
-                        color={isFollowing ? 'error' : 'success'}
+                        color={profile.following ? 'error' : 'success'}
                     >
-                        {isFollowing ? 'Unfollow' : 'Follow'}
+                        {profile.following ? 'Unfollow' : 'Follow'}
                     </Button>
                 </Stack>
             </Grid2>
